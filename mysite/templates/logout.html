@@ -1,0 +1,10 @@
+{%extends 'base.html' %}
+{%block content%}
+<h2 class = "font-weight-bold py-3"> Are you sure you want to logout?</h1>
+    <form method = "POST">
+        {%csrf_token%}
+        <button type = "submit" class = "btn-1">
+            Log Out
+        </button>
+    </form>
+{%endblock%}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+{%if user.is_authenticated%}
+<h2 class = 'font-weight-bold py-3'>You are already logged in! Log off to log in with another account</h2>
+{%else%}
+    <div class = "center">
+        <h1 class = "font-weight-bold py-3">Sign in to your account</h1>
+            <form action="." method = "POST">
+                {% csrf_token %}
+                <!-- Email input -->
+                <div class = "center">
+                    <div class="form-outline mb-4">
+                        <input type="text" id="username" name="username" placeholder="Username" class = "form-control my-4 p-3" />
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input type="password" class = "form-control my-4 p-3" id="password" name = "password" placeholder="Password" />
+                    <button type = "submit" class="btn-1" >Log in</button>   
+                </div>
+
+                </div>
+                    
+            </form> 
+    </div>
+{%endif%}   
+{% endblock content %}

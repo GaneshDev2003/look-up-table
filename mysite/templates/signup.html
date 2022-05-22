@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block content%}
+<style>
+    .btn-1{
+        width:60%;
+    }
+</style>
+    <form action="." method = "POST">
+        {% csrf_token %}
+        <div class = "center">
+            <h1 class ="font-weight-bold py-3">Register as a new user</h1>
+        <div class="form-outline mb-4">
+            <input type = "text" name = "username" placeholder="Enter your username"/>
+            <br>
+        </div>
+        <div class="form-outline mb-4">
+            <input type = "password" name = "password" placeholder="Enter password"/>
+            <br>
+        </div>
+        <div class="form-outline mb-4">
+        <label>Are you an editor</label>
+        <input type = "checkbox" name = "isEditor"/>
+        <br>
+        </div>
+
+        <button type = "submit" class = "btn-1">Sign Up</button>
+
+        </div>
+        
+    </form>
+    {%endblock content%}

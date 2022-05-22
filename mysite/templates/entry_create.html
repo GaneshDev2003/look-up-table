@@ -1,0 +1,22 @@
+{%extends 'base.html' %}
+{%block content%}
+{%if user.is_authenticated %}
+<style>
+     .btn-1{
+        width:60%;
+    }
+</style>
+<div class = "center">
+    <h1 class="font-weight-bold py-3">Create a new entry</h1>
+    <form action ="." method = "POST">
+        {%csrf_token%}
+        {{form.as_p}}
+        <button type = "submit" class = "btn-1">Create</button>
+    </form>
+</div>
+{%else%}
+<h2 class = "font-weight-bold py-3">
+    Looks like you are not logged in! Please log in to continue...
+</h2>
+{%endif%}
+{%endblock content%}

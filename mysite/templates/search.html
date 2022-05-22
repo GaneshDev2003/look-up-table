@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{%block content%}
+{%if user.is_authenticated%}
+<div class="input-group">
+  <form action="{% url 'search-user' %}" method="POST">
+  {%csrf_token%}
+  <div class = "form-check form-check-inline">
+      <div class="form-outline">
+          <input type="search" id="searched" name = "searched" class="form-control" placeholder="Search by name...."/>
+      </div>
+      <button type="submit" class="btn btn-primary">
+      Search
+      </button>
+  </div>
+  </form>
+</div>
+{%if searched%}
+<table class = "table">
+<thread class = "thread-dark">
+  <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Country</th>
+      <th>Company</th>
+      <th>Branch</th>
+      <th>Batch</th>
+      <th>Update</th>
+    </tr>
+</thread>
+    {%for entry in entries%}
+    
+    <tr>
+      <td>{{entry.name}}</th>
+      <td>{{entry.age}}</th>
+      <td>{{entry.country}}</th>
+      <td>{{entry.company}}</th>
+      <td>{{entry.branch}}</th>
+      <td>{{entry.batch}}</td>
+      {%if isEditor == True %}
+      <td><a href="{% url 'update-user' entry.id %}">Update</a></td>
+      {%else%}
+      <td>Not an editor</td>
+      {%endif%}
+  </tr>
+    {%endfor%}
+</table>
+{%endif%}
+{%else%}
+<h1 class = "font-weight-bold py-3">Looks like you are not logged in!</h1>
+{%endif%}
+
+{%endblock content%}
