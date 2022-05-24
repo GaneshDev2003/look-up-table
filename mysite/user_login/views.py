@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import UserLogin
+from django.contrib import messages
+from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth import login,logout
 from django.contrib.auth.models import User
@@ -23,11 +25,14 @@ def user_register_view(request):
         isEditor = False
         if(request.POST.get('isEditor',False)=="on"):
             isEditor = True
-        obj = UserLogin.objects.create(username = username,password = password, isEditor = isEditor)
-        obj.save()
-        user = User.objects.create_user(username=username,password=password)
-        user.save()
-        return redirect('home')
+        if(User.objects.filter(username = username).exists()):
+            raise forms.ValidationError("This username already exists")
+        else:
+            obj = UserLogin.objects.create(username = username,password = password, isEditor = isEditor)
+            obj.save()
+            user = User.objects.create_user(username=username,password=password)
+            user.save()
+            return redirect('home')
     return render(request,'signup.html',{})
 
 def user_signin_view(request):

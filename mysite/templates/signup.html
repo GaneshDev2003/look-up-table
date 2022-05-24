@@ -5,6 +5,9 @@
         width:60%;
     }
 </style>
+{%if user.is_authenticated%}
+<h1 class = "font-weight-bold py-3">You are already logged in, log off to create a new account</h1>
+{%else%}
     <form action="." method = "POST">
         {% csrf_token %}
         <div class = "center">
@@ -28,4 +31,5 @@
         </div>
         
     </form>
+{%endif%}
     {%endblock content%}

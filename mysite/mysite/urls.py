@@ -32,7 +32,7 @@ urlpatterns = [
     path('signin/',user_signin_view),
     path('admin/', admin.site.urls),
     path('register/',user_register_view),
-    path('/logout',user_logout_view,name = 'logout'),
+    path('logout',user_logout_view,name = 'logout'),
     path('search/',user_search_view,name = 'search-user'),
     path('', home_view, name = 'home'),
     path('update/<user_id>',user_update_view , name ='update-user'),
